@@ -1,38 +1,85 @@
 .App {
-  text-align: center;
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  height: 100vh; /* Make the container take up the full height of the viewport */
+  margin: 0; /* Remove any default margin */
+  text-align: center; /* Center all the text */
+  font-family: Arial, sans-serif; /* Optional: Set font */
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
+button {
+  background-color: #ff69b4; /* Pink color */
+  border: none;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem; /* Add spacing between text and button */
+  /* z-index: 10; */
+}
+
+button:hover {
+  background-color: #ff1493; /* Darker pink on hover */
+}
+
+p {
+  font-size: 1.5rem; /* Set the font size for the paragraph */
+  margin-bottom: 1rem; /* Space below the paragraph */
+}
+
+h1 {
+  font-size: 2rem; /* Set the font size for the title */
+  margin-bottom: 1rem; /* Space below the title */
+  user-select: none; /* Prevent text from being highlighted */
+}
+
+.floating-cat {
+  font-size: 30px;
+  position: absolute;
+  bottom: 200px; /* Start position, just above the button */
+  left: 60%; /* Center the cat horizontally */
+  transform: translateX(-50%); /* Adjust to ensure exact centering */
+  animation: moveHorizontally, jumpAndFall 1s linear forwards;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes jumpAndFall {
+  0% {
+    transform: translateY(0) translateX(var(--x-move, 0px));
+    animation-timing-function: ease-out;
+  }
+  30% {
+    transform: translateY(-100px) translateX(var(--x-move, 0px));
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(300px) translateX(var(--x-move, 0px));
+    opacity: 0;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes moveHorizontally {
+  0% {
+    transform: translateX(0);
   }
-  to {
-    transform: rotate(360deg);
+
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
