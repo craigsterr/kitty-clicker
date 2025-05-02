@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/kitty-clicker/static/css/main.b4b26081.css",
+    "main.js": "/kitty-clicker/static/js/main.d8abeb00.js",
+    "static/js/453.30e735ba.chunk.js": "/kitty-clicker/static/js/453.30e735ba.chunk.js",
+    "index.html": "/kitty-clicker/index.html",
+    "main.b4b26081.css.map": "/kitty-clicker/static/css/main.b4b26081.css.map",
+    "main.d8abeb00.js.map": "/kitty-clicker/static/js/main.d8abeb00.js.map",
+    "453.30e735ba.chunk.js.map": "/kitty-clicker/static/js/453.30e735ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b4b26081.css",
+    "static/js/main.d8abeb00.js"
+  ]
+}
