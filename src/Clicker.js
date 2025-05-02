@@ -16,8 +16,10 @@ function Clicker() {
   const [autoClickInterval, setautoClickInterval] = useState(1000);
   const [nextUpgradeNum, setNextUpgradeNum] = useState(100);
 
-  const click = new Audio("/assets/click.mp3");
-  const ghettoSmoshSound = new Audio("/assets/ghetto_smosh.mp3");
+  const click = new Audio(`${process.env.PUBLIC_URL}/assets/click.mp3`);
+  const ghettoSmoshSound = new Audio(
+    `${process.env.PUBLIC_URL}/assets/ghetto_smosh.mp3`
+  );
 
   const addCat = (amount = 1) => {
     setCats((prevCats) => {
@@ -54,12 +56,12 @@ function Clicker() {
   }, [isAutoClickerOn, cats]);
 
   const meowSounds = [
-    "/assets/cat_sounds/meow1.wav",
-    "/assets/cat_sounds/meow2.wav",
-    "/assets/cat_sounds/meow3.wav",
-    "/assets/cat_sounds/meow4.wav",
-    "/assets/cat_sounds/meow5.wav",
-    "/assets/cat_sounds/meow6.wav",
+    `${process.env.PUBLIC_URL}/assets/cat_sounds/meow1.wav`,
+    `${process.env.PUBLIC_URL}/assets/cat_sounds/meow2.wav`,
+    `${process.env.PUBLIC_URL}/assets/cat_sounds/meow3.wav`,
+    `${process.env.PUBLIC_URL}/assets/cat_sounds/meow4.wav`,
+    `${process.env.PUBLIC_URL}/assets/cat_sounds/meow5.wav`,
+    `${process.env.PUBLIC_URL}/assets/cat_sounds/meow6.wav`,
   ];
 
   const playRandomMeow = () => {
