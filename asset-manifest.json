@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/kitty-clicker/static/css/main.0979bb6c.css",
-    "main.js": "/kitty-clicker/static/js/main.68de7c2b.js",
+    "main.js": "/kitty-clicker/static/js/main.ea33e81e.js",
     "static/js/453.30e735ba.chunk.js": "/kitty-clicker/static/js/453.30e735ba.chunk.js",
     "index.html": "/kitty-clicker/index.html",
     "main.0979bb6c.css.map": "/kitty-clicker/static/css/main.0979bb6c.css.map",
-    "main.68de7c2b.js.map": "/kitty-clicker/static/js/main.68de7c2b.js.map",
+    "main.ea33e81e.js.map": "/kitty-clicker/static/js/main.ea33e81e.js.map",
     "453.30e735ba.chunk.js.map": "/kitty-clicker/static/js/453.30e735ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0979bb6c.css",
-    "static/js/main.68de7c2b.js"
+    "static/js/main.ea33e81e.js"
   ]
 }
