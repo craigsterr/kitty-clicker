@@ -20,16 +20,19 @@ function Clicker() {
   const INITIAL_CLICK_VALUE = 1;
   const INITIAL_UPGRADE = 10;
   const CAT_DISPLAY_DURATION = 1000;
+  const INITIAL_MILESTONE_INTERVAL = 20;
 
   const [cats, setCats] = useState(0);
   const [floatingCats, setFloatingCats] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [isAutoClickerOn, setIsAutoClickerOn] = useState(false);
   const [milestone, setMilestone] = useState(0);
+  const [milestoneInterval, setMilestoneInterval] = useState(
+    INITIAL_MILESTONE_INTERVAL
+  );
   const [catClickAmt, setCatClickAmt] = useState(INITIAL_CLICK_VALUE);
   const [autoClickInterval, setAutoClickInterval] = useState(1000);
   const [nextUpgradeNum, setNextUpgradeNum] = useState(INITIAL_UPGRADE);
-  const [milestoneIncrement, setMilestoneIncrement] = useState(INITIAL_UPGRADE);
   const [tooltip, setTooltip] = useState({
     text: "",
     x: 0,
@@ -38,6 +41,7 @@ function Clicker() {
   });
   const [bonusCats, setBonusCats] = useState([]);
   const [explosions, setExplosions] = useState([]);
+  const [houses, setHouses] = useState(0);
   const marioSong = useRef(
     new Audio(`${process.env.PUBLIC_URL}/assets/mario_song.mp3`)
   );
@@ -72,17 +76,6 @@ function Clicker() {
     `${process.env.PUBLIC_URL}/assets/cat_sounds/meow6.wav`,
   ];
 
-  const catImages = [
-    `${process.env.PUBLIC_URL}/assets/cat1.png`,
-    `${process.env.PUBLIC_URL}/assets/cat2.png`,
-    `${process.env.PUBLIC_URL}/assets/cat3.png`,
-    `${process.env.PUBLIC_URL}/assets/cat4.png`,
-    `${process.env.PUBLIC_URL}/assets/cat5.png`,
-    `${process.env.PUBLIC_URL}/assets/cat6.png`,
-    `${process.env.PUBLIC_URL}/assets/cat7.png`,
-    `${process.env.PUBLIC_URL}/assets/cat8.png`,
-  ];
-
   const incrementCats = useCallback(
     (amount = 1) => {
       setCats((prevCats) => {
@@ -90,8 +83,10 @@ function Clicker() {
 
         if (newCount >= nextUpgradeNum) {
           setMilestone(nextUpgradeNum);
-          setMilestoneIncrement((prevNum) => prevNum + 10);
-          setNextUpgradeNum((prevNum) => prevNum + milestoneIncrement);
+          setNextUpgradeNum((prevNum) => {
+            setMilestoneInterval((prevInterval) => prevInterval + 40);
+            return prevNum + milestoneInterval;
+          });
 
           setShowPopup(true);
 
@@ -101,7 +96,7 @@ function Clicker() {
         return newCount;
       });
     },
-    [nextUpgradeNum, milestoneIncrement]
+    [nextUpgradeNum, milestoneInterval]
   );
 
   const playRandomMeow = () => {
@@ -150,6 +145,16 @@ function Clicker() {
   };
 
   useEffect(() => {
+    const catImages = [
+      `${process.env.PUBLIC_URL}/assets/cat1.png`,
+      `${process.env.PUBLIC_URL}/assets/cat2.png`,
+      `${process.env.PUBLIC_URL}/assets/cat3.png`,
+      `${process.env.PUBLIC_URL}/assets/cat4.png`,
+      `${process.env.PUBLIC_URL}/assets/cat5.png`,
+      `${process.env.PUBLIC_URL}/assets/cat6.png`,
+      `${process.env.PUBLIC_URL}/assets/cat7.png`,
+      `${process.env.PUBLIC_URL}/assets/cat8.png`,
+    ];
     const interval = setInterval(() => {
       const id = Date.now();
       const x = Math.random() * window.innerWidth;
@@ -168,7 +173,6 @@ function Clicker() {
 
   useEffect(() => {
     if (!isAutoClickerOn) return;
-    const rect = titleRef.current.getBoundingClientRect();
     const interval = setInterval(() => {
       incrementCats(1);
     }, autoClickInterval);
@@ -186,6 +190,11 @@ function Clicker() {
 
   return (
     <div className="App">
+      <div className="houses" style={{ display: "inline" }}>
+        {Array.from({ length: houses }, (_, index) => (
+          <span key={index}>🏠</span>
+        ))}{" "}
+      </div>
       <h1>kitty clicker 😺</h1>
       <p ref={titleRef}>cats: {cats}</p>
       <p>next upgrade: {nextUpgradeNum} cats</p>
@@ -205,6 +214,7 @@ function Clicker() {
             setAutoClickInterval((prev) => prev / 1.25);
             setTooltip((prev) => ({ ...prev, visible: false }));
             setShowPopup(false);
+            setHouses((prevHouses) => prevHouses + 1);
             undertaleSound.current.play();
           }}
           onCatnip={() => {
@@ -245,7 +255,7 @@ function Clicker() {
             position: "absolute",
             width: "60px",
             height: "60px",
-            backgroundImage: "url('/kitty-clicker/assets/explosion.gif')",
+            backgroundImage: `url('${process.env.PUBLIC_URL}assets/explosion.gif')`,
             backgroundSize: "cover",
             pointerEvents: "none",
             zIndex: 20,

@@ -3,14 +3,14 @@ import { useMemo } from "react";
 function FloatingCat({ x, y }) {
   const catImage = useMemo(() => {
     const catImages = [
-      "/kitty-clicker/assets/cat1.png",
-      "/kitty-clicker/assets/cat2.png",
-      "/kitty-clicker/assets/cat3.png",
-      "/kitty-clicker/assets/cat4.png",
-      "/kitty-clicker/assets/cat5.png",
-      "/kitty-clicker/assets/cat6.png",
-      "/kitty-clicker/assets/cat7.png",
-      "/kitty-clicker/assets/cat8.png",
+      `${process.env.PUBLIC_URL}/assets/cat1.png`,
+      `${process.env.PUBLIC_URL}/assets/cat2.png`,
+      `${process.env.PUBLIC_URL}/assets/cat3.png`,
+      `${process.env.PUBLIC_URL}/assets/cat4.png`,
+      `${process.env.PUBLIC_URL}/assets/cat5.png`,
+      `${process.env.PUBLIC_URL}/assets/cat6.png`,
+      `${process.env.PUBLIC_URL}/assets/cat7.png`,
+      `${process.env.PUBLIC_URL}/assets/cat8.png`,
     ];
 
     return catImages[Math.floor(Math.random() * catImages.length)];
