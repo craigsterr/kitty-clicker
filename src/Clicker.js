@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Popup from "./Popup";
 import FloatingCat from "./FloatingCat";
+import Button from "./Button";
 
 function Tooltip({ text, x, y }) {
   return (
@@ -195,10 +196,19 @@ function Clicker() {
           <span key={index}>🏠</span>
         ))}{" "}
       </div>
-      <h1>kitty clicker 😺</h1>
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/kitty_title.png`}
+        alt="kitty clicker 😺"
+        draggable={false}
+        style={{
+          transform: "scale(1.5)",
+          imageRendering: "pixelated",
+          margin: "30px",
+        }}
+      />
       <p ref={titleRef}>cats: {cats}</p>
       <p>next upgrade: {nextUpgradeNum} cats</p>
-      <button onClick={handleMainClick}>meow</button>
+      <Button onClick={handleMainClick} />
       {floatingCats.map((cat) => (
         <FloatingCat key={cat.id} x={cat.xPos} y={cat.yPos} />
       ))}
@@ -255,7 +265,7 @@ function Clicker() {
             position: "absolute",
             width: "60px",
             height: "60px",
-            backgroundImage: `url('${process.env.PUBLIC_URL}assets/explosion.gif')`,
+            backgroundImage: `url('${process.env.PUBLIC_URL}/assets/explosion.gif')`,
             backgroundSize: "cover",
             pointerEvents: "none",
             zIndex: 20,
